@@ -159,10 +159,10 @@ func EditSiswa() {
 		return
 	}
 
-	// Cari siswa berdasarkan ID
+	// Cari siswa berdasarkan Nama
 	for i, siswa := range siswaData {
 		if siswa.ID == id {
-			fmt.Printf("Mengubah data untuk siswa dengan ID %d.\n", id)
+			fmt.Printf("Mengubah data untuk siswa dengan Nama %d.\n", id)
 
 			// Edit Nama
 			fmt.Printf("Nama Lama: %s\nMasukkan Nama Baru (tekan Enter untuk melewati): ", siswa.Nama)

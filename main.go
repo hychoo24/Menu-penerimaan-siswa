@@ -13,9 +13,9 @@ type Siswa struct {
 	ID     int
 	Nama   string
 	Umur   int
+	Kelas  int
 	Gender string
 	Kota   string
-	Kelas  int
 }
 
 var siswaData []Siswa
@@ -90,18 +90,21 @@ func TambahSiswa() {
 
 	fmt.Print("Jenis Kelamin (L/P): ")
 	scanner.Scan()
-	Gender := scanner.Text()
-	if Gender != "L" && Gender != "P" {
+	gender := scanner.Text()
+	if gender != "L" && gender != "P" {
 		fmt.Println("Jenis kelamin harus 'L' atau 'P' ")
 		return
 	}
 
 	fmt.Print("Asal Kota: ")
 	scanner.Scan()
-	Kota := scanner.Text()
+	kota := scanner.Text()
+	if kota == "" {
+		kota = ""
+	}
 
 	currentID++
-	newSiswa := Siswa{ID: currentID, Nama: nama, Umur: umur, Kelas: kelas, Gender: Gender, Kota: Kota}
+	newSiswa := Siswa{ID: currentID, Nama: nama, Umur: umur, Kelas: kelas, Gender: gender, Kota: kota}
 	siswaData = append(siswaData, newSiswa)
 
 	fmt.Println("Data siswa berhasil ditambahkan!")

@@ -2,6 +2,7 @@ package main
 
 import (
 	"bufio"
+	"encoding/json"
 	"fmt"
 	"os"
 	"strconv"
@@ -108,14 +109,19 @@ func TambahSiswa() {
 
 func LihatSiswa() {
 	if len(siswaData) == 0 {
-		fmt.Println("Belum ada data siswa")
+		fmt.Println("Belum ada data siswa.")
+		return
+	}
+
+	// Mengubah Data Siswa ke JSON
+	jsonData, err := json.MarshalIndent(siswaData, "", "  ")
+	if err != nil {
+		fmt.Println("Terjadi kesalahan saat mengubah ke JSON:", err)
 		return
 	}
 
 	fmt.Println("\n=== DATA SISWA ===")
-	for _, siswa := range siswaData {
-		fmt.Printf("ID: %d, Nama: %s, Umur: %d, Kelas: %d, Gender: %s, Kota: %s\n", siswa.ID, siswa.Nama, siswa.Umur, siswa.Kelas, siswa.Gender, siswa.Kota)
-	}
+	fmt.Println(string(jsonData)) // Menampilkan JSON sebagai string
 }
 
 func HapusSiswa() {

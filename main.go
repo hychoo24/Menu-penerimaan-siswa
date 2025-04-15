@@ -14,6 +14,7 @@ type Siswa struct {
 	Umur   int
 	Gender string
 	Kota   string
+	Kelas  int
 }
 
 var siswaData []Siswa
@@ -78,6 +79,14 @@ func TambahSiswa() {
 		return
 	}
 
+	fmt.Print("Kelas: ")
+	scanner.Scan()
+	kelas, err := strconv.Atoi(scanner.Text())
+	if err != nil {
+		fmt.Println("Kelas harus berapa angka")
+		return
+	}
+
 	fmt.Print("Jenis Kelamin (L/P): ")
 	scanner.Scan()
 	Gender := scanner.Text()
@@ -91,7 +100,7 @@ func TambahSiswa() {
 	Kota := scanner.Text()
 
 	currentID++
-	newSiswa := Siswa{ID: currentID, Nama: nama, Umur: umur, Gender: Gender, Kota: Kota}
+	newSiswa := Siswa{ID: currentID, Nama: nama, Umur: umur, Kelas: kelas, Gender: Gender, Kota: Kota}
 	siswaData = append(siswaData, newSiswa)
 
 	fmt.Println("Data siswa berhasil ditambahkan!")
@@ -105,7 +114,7 @@ func LihatSiswa() {
 
 	fmt.Println("\n=== DATA SISWA ===")
 	for _, siswa := range siswaData {
-		fmt.Printf("ID: %d, Nama: %s, Umur: %d, Gender: %s, Kota: %s\n", siswa.ID, siswa.Nama, siswa.Umur, siswa.Gender, siswa.Kota)
+		fmt.Printf("ID: %d, Nama: %s, Umur: %d, Kelas: %d, Gender: %s, Kota: %s\n", siswa.ID, siswa.Nama, siswa.Umur, siswa.Kelas, siswa.Gender, siswa.Kota)
 	}
 }
 
@@ -201,12 +210,12 @@ func EditSiswa() {
 				siswaData[i].Kota = kotaBaru
 			}
 
-			fmt.Printf("Data siswa dengan ID %d berhasil diperbarui.\n", id)
+			fmt.Printf("Data siswa dengan Nama %d berhasil diperbarui.\n", id)
 			return
 		}
 	}
 
-	fmt.Printf("Siswa dengan ID %d tidak ditemukan.\n", id)
+	fmt.Printf("Siswa dengan Nama %d tidak ditemukan.\n", id)
 }
 
 func CariSiswa() {
